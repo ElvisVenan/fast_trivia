@@ -9,7 +9,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'consts/app_routes.dart';
 
 import 'feature/data/repositories/questions_repositories/questions_repositories.dart';
-import 'feature/presenter/ui/home_page/home_page.dart';
+import 'feature/presenter/ui/questionnaire_page/questionnaire_page.dart';
 import 'feature/presenter/ui/splash_page/splash_page.dart';
 
 class AppModule extends Module {
@@ -41,6 +41,7 @@ class AppModule extends Module {
   List<ModularRoute> get routes => [
     ChildRoute(AppRoutes.appDefaultPage, child: (context, args) => const SplashPage()),
     ChildRoute(AppRoutes.appSplashPage, child: (context, args) => const SplashPage()),
-    ChildRoute(AppRoutes.appHomePage, child: (context, args) => const HomePage()),
+    ChildRoute(AppRoutes.appHomePage, child: (context, args) => const QuestionnairePage()),
+    ChildRoute(AppRoutes.appQuestionnairePage, child: (context, args) => const QuestionnairePage()),
   ];
 }

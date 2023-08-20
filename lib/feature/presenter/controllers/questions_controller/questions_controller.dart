@@ -14,6 +14,12 @@ class QuestionsController = _QuestionsController with _$QuestionsController;
 abstract class _QuestionsController with Store {
 
   @observable
+  int selectedIndex = - 1;
+
+  @observable
+  int changeQuestionList = 0;
+
+  @observable
   int id = 0;
 
   @observable
@@ -41,6 +47,21 @@ abstract class _QuestionsController with Store {
       return success;
     });
 
+  }
+
+  @action
+  int getSelectedIndex (int index) {
+    return selectedIndex = index;
+  }
+
+  @action
+   changeQuestion () {
+
+    if(questions.length - 1 > changeQuestionList){
+      changeQuestionList ++;
+    } else{
+      changeQuestionList = 1;
+    }
   }
 
 }

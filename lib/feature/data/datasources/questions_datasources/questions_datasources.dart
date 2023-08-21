@@ -1,9 +1,9 @@
 import '../../../../../core/usecase/usecase.dart';
 
-import '../../../../../feature/domain/entities/questions_entities/questions_entity.dart';
+import 'package:fast_trivia/feature/data/models/questionnaire_models/question_answer_model.dart';
 
 abstract class QuestionsDataSources{
 
-  Future<QuestionsEntity> getQuestions(NoParams noParams);
+  Future<QuestionAnswerModel> getQuestions(NoParams noParams);
 
 }

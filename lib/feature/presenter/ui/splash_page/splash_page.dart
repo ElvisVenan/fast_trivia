@@ -10,6 +10,7 @@ import '../../../../consts/app_colors.dart';
 import '../../../../consts/app_drawables.dart';
 import '../../../../consts/app_text_styles.dart';
 
+import '../../../../feature/domain/params/args_params/args_params.dart';
 import '../../../../feature/presenter/ui/home_page/home_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(const Duration(milliseconds: 9500), () {
-      HomePage.navigate();
+      HomePage.navigate(const ArgsParams());
     });
   }
 

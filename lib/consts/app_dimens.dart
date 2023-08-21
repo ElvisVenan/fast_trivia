@@ -3,6 +3,7 @@ class AppDimens {
 
   //Margin
   static const double tinyMarginDimension = 4.0;
+  static const double smallMarginDimension = 8.0;
   static const double defaultMarginDimension = 16.0;
   static const double littleBigMarginDimension = 20.0;
   static const double veryBigMarginDimension = 32.0;

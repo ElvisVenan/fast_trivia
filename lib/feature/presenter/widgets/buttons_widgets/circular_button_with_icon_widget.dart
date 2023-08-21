@@ -23,7 +23,7 @@ class CircularButtonWithIconWidget extends StatelessWidget {
           scale: 1.2,
           child: Icon(
             icon,
-            color: AppColors.pureWhiteColor,
+            color: AppColors.pureBlackColor,
             size: AppDimens.bigMarginDimension,
           ),
         ),

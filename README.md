@@ -1,8 +1,6 @@
-# fast_trivia
 # Título do Projeto
-
-Descrição breve do projeto.
-
+ - fast_trivia
+ - 
 ## Acesse a branch Master
 
 ## Versões Utilizadas

@@ -3,7 +3,7 @@
 
 Descrição breve do projeto.
 
-## Projeto final esta na Branch Master
+## Acesse a branch Master
 
 ## Versões Utilizadas
 

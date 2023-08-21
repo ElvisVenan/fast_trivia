@@ -18,6 +18,9 @@ abstract class _QuestionsController with Store {
   int idx = 0;
 
   @observable
+  String incorrectAnswers = "";
+
+  @observable
   int selectedIndex = - 1;
 
   @observable

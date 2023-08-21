@@ -15,9 +15,12 @@ class RoundedEdgeButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.black),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.black),
+        ),
       ),
     );
   }

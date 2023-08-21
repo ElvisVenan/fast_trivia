@@ -1,3 +1,5 @@
+import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/options_entity.dart';
+import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/questions_enitity.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,7 +14,23 @@ class QuestionsController = _QuestionsController with _$QuestionsController;
 abstract class _QuestionsController with Store {
 
   @observable
-  String question = '';
+  int selectedIndex = - 1;
+
+  @observable
+  int changeQuestionList = 0;
+
+  @observable
+  int id = 0;
+
+  @observable
+  String title = '';
+
+  @observable
+  List<QuestionsEntity> questions = [];
+
+  @observable
+  List<OptionsEntity> options = [];
+
 
   @action
   Future getQuestions() async {
@@ -22,10 +40,28 @@ abstract class _QuestionsController with Store {
         .call(NoParams());
 
     result.fold((error) => error.friendlyMessage, (success) async {
-      question = success.question;
+      id = success.questionnaire.id;
+      title = success.questionnaire.title;
+      questions = success.questionnaire.questions;
+      options = success.questionnaire.questions[0].options;
       return success;
     });
 
+  }
+
+  @action
+  int getSelectedIndex (int index) {
+    return selectedIndex = index;
+  }
+
+  @action
+   changeQuestion () {
+
+    if(questions.length - 1 > changeQuestionList){
+      changeQuestionList ++;
+    } else{
+      changeQuestionList = 1;
+    }
   }
 
 }

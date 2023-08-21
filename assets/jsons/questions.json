@@ -1,54 +1,53 @@
 {
-  "questionario": {
+  "questionnaire": {
     "id": 1,
-    "titulo": "Natureza brasileira",
-    "questoes": [
+    "title": "Nature of Brazil",
+    "questions": [
       {
         "id": 1,
-        "titulo": "Florestas brasileiras",
-        "pergunta": "Qual o nome da maior floresta brasileira?",
-        "gabarito": 4,
-        "alternativas": [
+        "title": "Brazilian Forests",
+        "question": "What is the name of the largest Brazilian forest?",
+        "answer": 4,
+        "options": [
           {
             "id": 1,
-            "titulo": "Caatinga"
+            "title": "Caatinga"
           },
           {
             "id": 2,
-            "titulo": "Cerrado"
+            "title": "Cerrado"
           },
           {
             "id": 3,
-            "titulo": "Mata Atlântica"
+            "title": "Atlantic Forest"
           },
           {
             "id": 4,
-            "titulo": "Amazônica"
+            "title": "Amazon Rainforest"
           }
         ]
       },
       {
         "id": 2,
-        "titulo": "Praias brasileiras",
-
-        "pergunta": "Qual estado tem a maior faixa litorânea?",
-        "gabarito": 3,
-        "alternativas": [
+        "title": "Brazilian Beaches",
+        "question": "Which state has the longest coastline?",
+        "answer": 3,
+        "options": [
           {
             "id": 1,
-            "titulo": "São Paulo"
+            "title": "São Paulo"
           },
           {
             "id": 2,
-            "titulo": "Maranhão"
+            "title": "Maranhão"
           },
           {
             "id": 3,
-            "titulo": "Bahia"
+            "title": "Bahia"
           },
           {
             "id": 4,
-            "titulo": "Rio de Janeiro"
+            "title": "Rio de Janeiro"
           }
         ]
       }

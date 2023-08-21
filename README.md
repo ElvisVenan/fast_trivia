@@ -8,10 +8,6 @@ Descrição breve do projeto.
 - Flutter: 3.14.0-8.0.pre.17
 - Dart: 3.2.0-87.0.dev
 
-## Descrição
-
-Explique o propósito do seu projeto e forneça uma visão geral do que ele faz.
-
 ## Instalação
 
 Siga estas etapas para configurar o ambiente de desenvolvimento e executar o projeto:

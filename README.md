@@ -31,7 +31,4 @@ Se as versões não corresponderem às especificadas no início deste README, co
 
 5. **Executar o Projeto:**
 
-## Uso
-
-Demonstre como usar o projeto ou compartilhe exemplos de código relevantes.
 

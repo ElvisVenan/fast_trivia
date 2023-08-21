@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RoundedEdgeButtonWidget(
-                  text: AppStrings.newQuestionnaire,
+                  text: AppStrings.newQuestionnaireString,
                   onPressed: () {
                     QuestionnairePage.navigate(const ArgsParams());
                   },

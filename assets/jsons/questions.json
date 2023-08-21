@@ -1,37 +1,109 @@
 {
   "questionnaire": {
-    "id": 1,
-    "title": "Nature of Brazil",
+    "id": 3,
+    "title": "Conhecimentos Gerais",
     "questions": [
       {
         "id": 1,
-        "title": "Brazilian Forests",
-        "question": "What is the name of the largest Brazilian forest?",
-        "answer": 4,
+        "title": "Capitais do Mundo",
+        "question": "Qual é a capital da Austrália?",
+        "answer": 2,
         "options": [
           {
             "id": 1,
-            "title": "Caatinga"
+            "title": "Sydney"
           },
           {
             "id": 2,
-            "title": "Cerrado"
+            "title": "Camberra"
           },
           {
             "id": 3,
-            "title": "Atlantic Forest"
+            "title": "Melbourne"
           },
           {
             "id": 4,
-            "title": "Amazon Rainforest"
+            "title": "Brisbane"
           }
         ]
       },
       {
         "id": 2,
-        "title": "Brazilian Beaches",
-        "question": "Which state has the longest coastline?",
+        "title": "Grandes Filósofos",
+        "question": "Qual filósofo grego é conhecido por ser o mestre de Alexandre, o Grande?",
         "answer": 3,
+        "options": [
+          {
+            "id": 1,
+            "title": "Platão"
+          },
+          {
+            "id": 2,
+            "title": "Sócrates"
+          },
+          {
+            "id": 3,
+            "title": "Aristóteles"
+          },
+          {
+            "id": 4,
+            "title": "Heráclito"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Obras de Arte",
+        "question": "Qual pintor famoso criou a obra 'A Noite Estrelada'?",
+        "answer": 1,
+        "options": [
+          {
+            "id": 1,
+            "title": "Vincent van Gogh"
+          },
+          {
+            "id": 2,
+            "title": "Leonardo da Vinci"
+          },
+          {
+            "id": 3,
+            "title": "Pablo Picasso"
+          },
+          {
+            "id": 4,
+            "title": "Michelangelo"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Descobertas Científicas",
+        "question": "Qual cientista propôs a lei da gravidade após observar uma maçã caindo de uma árvore?",
+        "answer": 2,
+        "options": [
+          {
+            "id": 1,
+            "title": "Galileu Galilei"
+          },
+          {
+            "id": 2,
+            "title": "Isaac Newton"
+          },
+          {
+            "id": 3,
+            "title": "Nikola Tesla"
+          },
+          {
+            "id": 4,
+            "title": "Marie Curie"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Cidades Importantes",
+        "question": "Qual é a cidade conhecida como 'Cidade Maravilhosa'?",
+        "answer": 4,
         "options": [
           {
             "id": 1,
@@ -39,11 +111,11 @@
           },
           {
             "id": 2,
-            "title": "Maranhão"
+            "title": "Buenos Aires"
           },
           {
             "id": 3,
-            "title": "Bahia"
+            "title": "Miami"
           },
           {
             "id": 4,

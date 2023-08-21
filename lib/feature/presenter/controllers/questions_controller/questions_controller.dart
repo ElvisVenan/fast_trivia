@@ -1,9 +1,10 @@
-import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/options_entity.dart';
-import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/questions_enitity.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/usecase/usecase.dart';
+
+import '../../../../feature/domain/entities/questionnaires_entities/options_entity.dart';
+import '../../../../feature/domain/entities/questionnaires_entities/questions_enitity.dart';
 
 import '../../../../feature/domain/usecases/questions_usecases/get_questions_usecase.dart';
 
@@ -14,10 +15,22 @@ class QuestionsController = _QuestionsController with _$QuestionsController;
 abstract class _QuestionsController with Store {
 
   @observable
+  int idx = 0;
+
+  @observable
   int selectedIndex = - 1;
 
   @observable
-  int changeQuestionList = 0;
+  int changeQuestionInt = 0;
+
+  @observable
+  List<int> changeQuestionList = [];
+
+  @observable
+  int userResponse = 1;
+
+  @observable
+  int correctAnswers = 0;
 
   @observable
   int id = 0;
@@ -26,7 +39,7 @@ abstract class _QuestionsController with Store {
   String title = '';
 
   @observable
-  List<QuestionsEntity> questions = [];
+  List<QuestionsEntity> questions = [QuestionsEntity(id: 0, title: "", question: "", answer: 0, options: [])];
 
   @observable
   List<OptionsEntity> options = [];
@@ -57,11 +70,22 @@ abstract class _QuestionsController with Store {
   @action
    changeQuestion () {
 
-    if(questions.length - 1 > changeQuestionList){
-      changeQuestionList ++;
+    if(questions.length - 1 > changeQuestionInt){
+      changeQuestionInt ++;
     } else{
-      changeQuestionList = 1;
+      changeQuestionInt = 1;
     }
+  }
+
+  @action
+  calculateCorrectAnswers () {
+
+    if(questions[idx].answer - 1 == userResponse){
+      correctAnswers ++;
+    }
+    idx ++;
+    print(" resposta $correctAnswers");
+    print("index $idx");
   }
 
 }

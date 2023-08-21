@@ -41,7 +41,7 @@ class CompletedQuestionnairePage extends StatelessWidget {
               height: AppDimens.tinyMarginDimension,
             ),
             Text(
-              "${args?.firstArgs ?? AppStrings.noHitsString} ${AppStrings.correctString}",
+              "${args?.correctAnswersCount ?? AppStrings.noHitsString} ${AppStrings.correctString}",
               style: const TextStyle(
                 fontSize: AppDimens.fontSizeMiniDimension,
               ),
@@ -55,8 +55,8 @@ class CompletedQuestionnairePage extends StatelessWidget {
                     text: AppStrings.answersString,
                     onPressed: () => HistoricalPage.navigate(
                           ArgsParams(
-                              secondArgs: args?.secondArgs ?? [],
-                              thirdArgs: args?.thirdArgs ?? []),
+                              selectedQuestions: args?.selectedQuestions ?? [],
+                              correctQuestions: args?.correctQuestions ?? []),
                         )),
               ),
             ),

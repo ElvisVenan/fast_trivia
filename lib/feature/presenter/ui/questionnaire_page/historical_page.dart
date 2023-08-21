@@ -106,10 +106,10 @@ class HistoricalPage extends StatelessWidget {
   }
 
   Color? _selectColorsForCorrectAndIncorrectAnswers(i, select) {
-    if (i == args?.thirdArgs[select].answer - 1) {
+    if (i == args!.correctQuestions![select].answer - 1) {
       return Colors.green;
     }
-    if (i + 1 == args?.secondArgs[select]) {
+    if (i + 1 == args?.selectedQuestions![select]) {
       return Colors.red;
     } else {
       return null;

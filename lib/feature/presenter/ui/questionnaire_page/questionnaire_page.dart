@@ -93,10 +93,10 @@ class QuestionnairePage extends StatelessWidget {
                             questionsController.questions.length) {
                           await questionsController.getQuestions();
                           CompletedQuestionnairePage.navigate(ArgsParams(
-                              firstArgs: questionsController.correctAnswers,
-                              secondArgs:
+                              correctAnswersCount: questionsController.correctAnswers,
+                              selectedQuestions:
                               questionsController.changeQuestionList,
-                              thirdArgs:
+                              correctQuestions:
                               questionsController.questions));
                         }
                       },

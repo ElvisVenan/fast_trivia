@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../feature/domain/entities/questionnaires_entities/questionnaire_entity.dart';
 import '../../feature/domain/entities/questionnaires_entities/options_entity.dart';
 import '../../feature/domain/entities/questionnaires_entities/questions_enitity.dart';
+import '../../feature/domain/params/args_params/change_question_entity.dart';
 
 class DatabaseHelper {
   late Database _database;
@@ -40,18 +41,34 @@ class DatabaseHelper {
             FOREIGN KEY (questionId) REFERENCES Questions (id)
           )
         ''');
+        db.execute('''
+          CREATE TABLE change_question_entities (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            selectedQuestions TEXT
+          )
+        ''');
       },
     );
   }
 
+  Future<void> saveChangeQuestionEntity(ChangeQuestionEntity changeQuestion) async {
+    await _database.insert(
+      'change_question_entities',
+      {'selectedQuestions': changeQuestion.selectedQuestions?.join(',')},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
   Future<void> insertQuestionnaire(QuestionnaireEntity questionnaire) async {
-    await _database.insert('Questionnaires', {'id': questionnaire.id, 'title': questionnaire.title});
+    await _database.insert('Questionnaires',
+        {'id': questionnaire.id, 'title': questionnaire.title});
     for (final question in questionnaire.questions) {
       await insertQuestion(question, questionnaire.id);
     }
   }
 
-  Future<void> insertQuestion(QuestionsEntity question, int questionnaireId) async {
+  Future<void> insertQuestion(
+      QuestionsEntity question, int questionnaireId) async {
     await _database.insert(
       'Questions',
       {
@@ -74,20 +91,55 @@ class DatabaseHelper {
     );
   }
 
+  Future<List<ChangeQuestionEntity>> getAllChangeQuestionEntities() async {
+    final db = _database;
+    final List<Map<String, dynamic>> maps = await db.query('change_question_entities');
+
+    return List.generate(maps.length, (index) {
+      return ChangeQuestionEntity(
+        id: maps[index]['id'],
+        selectedQuestions: _parseSelectedQuestions(maps[index]['selectedQuestions']),
+      );
+    });
+  }
+
+  List<int> _parseSelectedQuestions(String selectedQuestionsString) {
+    final List<String> questionIds = selectedQuestionsString.split(',');
+    return questionIds.map((id) => int.parse(id)).toList();
+  }
+
+
   Future<List<QuestionnaireEntity>> getQuestionnaires() async {
     final questionnaires = await _database.query('Questionnaires');
     final questionnaireList = <QuestionnaireEntity>[];
 
     for (final q in questionnaires) {
       final questions = await getQuestions(q['id'] as int);
-      questionnaireList.add(QuestionnaireEntity(id: q['id'] as int, title: q['title'] as String, questions: questions));
+      questionnaireList.add(QuestionnaireEntity(
+          id: q['id'] as int,
+          title: q['title'] as String,
+          questions: questions));
     }
 
     return questionnaireList;
   }
 
+  Future<List<int>> getSelectedQuestions() async {
+    final List<Map<String, dynamic>> queryResult = await _database.query('SelectedQuestions');
+
+    if (queryResult.isNotEmpty) {
+      final String questionsString = queryResult.first['questions'];
+      final List<int> selectedQuestions = questionsString.split(',').map(int.parse).toList();
+      return selectedQuestions;
+    } else {
+      return [];
+    }
+  }
+
+
   Future<List<QuestionsEntity>> getQuestions(int questionnaireId) async {
-    final questions = await _database.query('Questions', where: 'questionnaireId = ?', whereArgs: [questionnaireId]);
+    final questions = await _database.query('Questions',
+        where: 'questionnaireId = ?', whereArgs: [questionnaireId]);
     final questionList = <QuestionsEntity>[];
 
     for (final q in questions) {
@@ -105,7 +157,8 @@ class DatabaseHelper {
   }
 
   Future<List<OptionsEntity>> getOptions(int questionId) async {
-    final options = await _database.query('Options', where: 'questionId = ?', whereArgs: [questionId]);
+    final options = await _database
+        .query('Options', where: 'questionId = ?', whereArgs: [questionId]);
     final optionsList = <OptionsEntity>[];
     for (final opt in options) {
       optionsList.add(OptionsEntity(

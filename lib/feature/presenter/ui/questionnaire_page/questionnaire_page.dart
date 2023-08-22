@@ -1,3 +1,4 @@
+import 'package:fast_trivia/feature/domain/params/args_params/change_question_entity.dart';
 import 'package:fast_trivia/feature/presenter/controllers/questions_database_controller/questions_database_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -100,6 +101,7 @@ class QuestionnairePage extends StatelessWidget {
                               questionsController.changeQuestionList,
                               correctQuestions:
                               questionsController.questions));
+                          await questionsDatabaseController.saveSelectedQuestions( ChangeQuestionEntity(selectedQuestions: questionsController.changeQuestionList));
                           await questionsDatabaseController.saveQuestions(questionsController.questionnaire!);
                         }
                       },

@@ -7,7 +7,8 @@ class AppStrings{
   static const String confirmString = 'Confirmar ';
   static const String resultString = 'Resultado ';
   static const String correctString = 'acertos ';
-  static const String noHits = 'não houve';
-  static const String answers = 'Respostas';
+  static const String noHitsString = 'não houve';
+  static const String answersString = 'Respostas';
+  static const String historicalString = 'Histórico';
 
 }

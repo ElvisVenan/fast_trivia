@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
           child: Container(
             height: MediaQuery.sizeOf(context).height * 0.8,
             width: double.infinity,
-            color: AppColors.lightGray,
+            color: AppColors.pureWhiteColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

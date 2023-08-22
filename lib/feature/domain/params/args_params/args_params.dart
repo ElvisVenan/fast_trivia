@@ -1,20 +1,22 @@
 import 'package:equatable/equatable.dart';
 
+import '../../entities/questionnaires_entities/questions_enitity.dart';
+
 class ArgsParams extends Equatable {
-  final dynamic firstArgs;
-  final dynamic secondArgs;
-  final dynamic thirdArgs;
+  final int? correctAnswersCount;
+  final List<int>? selectedQuestions;
+  final List<QuestionsEntity>? correctQuestions;
 
   const ArgsParams({
-    this.firstArgs,
-    this.secondArgs,
-    this.thirdArgs,
+    this.correctAnswersCount,
+    this.selectedQuestions,
+    this.correctQuestions,
   });
 
   @override
   List<Object?> get props => [
-    firstArgs,
-    secondArgs,
-    thirdArgs,
+    correctAnswersCount,
+    selectedQuestions,
+    correctQuestions,
   ];
 }

@@ -10,7 +10,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'consts/app_routes.dart';
 
+import 'core/database_helper/database_helper.dart';
 import 'feature/data/repositories/questions_repositories/questions_repositories.dart';
+import 'feature/presenter/controllers/questions_database_controller/questions_database_controller.dart';
 import 'feature/presenter/ui/questionnaire_page/historical_page.dart';
 import 'feature/presenter/ui/questionnaire_page/questionnaire_page.dart';
 import 'feature/presenter/ui/splash_page/splash_page.dart';
@@ -38,6 +40,8 @@ class AppModule extends Module {
 
   final List<Bind> controllersBinds = [
     Bind.factory((i) => QuestionsController()),
+    Bind.factory((i) => QuestionsDatabaseController()),
+    Bind.lazySingleton((i) => DatabaseHelper()),
   ];
 
   @override

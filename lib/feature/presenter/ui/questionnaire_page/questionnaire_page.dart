@@ -29,7 +29,6 @@ class QuestionnairePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final questionsController = Modular.get<QuestionsController>();
     questionsController.getQuestions();
-
     return Scaffold(
       appBar: const AppBarOfColorDarkBlueWidget(
         title: AppStrings.questionnairesString,
@@ -39,7 +38,7 @@ class QuestionnairePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: AppDimens.littleBigMarginDimension,
+              height: AppDimens.bigMarginDimension,
             ),
             Observer(builder: (context) {
               return TitleAndSubtitleWidget(
@@ -84,7 +83,7 @@ class QuestionnairePage extends StatelessWidget {
                     alignment: AlignmentDirectional.centerEnd,
                     child: questionsController.selectedIndex != -1 ? RoundedEdgeButtonWidget(
                       text: AppStrings.confirmString,
-                      onPressed: (){
+                      onPressed: () async {
                         questionsController.changeQuestionList
                             .add(questionsController.selectedIndex + 1);
                         questionsController.selectedIndex = -1;
@@ -92,12 +91,13 @@ class QuestionnairePage extends StatelessWidget {
                         questionsController.calculateCorrectAnswers();
                         if (questionsController.idx >=
                             questionsController.questions.length) {
+                          await questionsController.getQuestions();
                           CompletedQuestionnairePage.navigate(ArgsParams(
-                              firstArgs: questionsController.correctAnswers,
-                              secondArgs:
+                              correctAnswersCount: questionsController.correctAnswers,
+                              selectedQuestions:
                               questionsController.changeQuestionList,
-                              thirdArgs:
-                              questionsController.questions[0].answer));
+                              correctQuestions:
+                              questionsController.questions));
                         }
                       },
                     ) : const SizedBox(),

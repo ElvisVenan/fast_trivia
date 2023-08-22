@@ -21,7 +21,7 @@ class ContainerWithRoundedEdgesWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius:
-              BorderRadius.circular(AppDimens.littleBigMarginDimension),
+              BorderRadius.circular(AppDimens.bigMarginDimension),
         ),
         child: child,
       ),

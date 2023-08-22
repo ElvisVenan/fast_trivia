@@ -24,7 +24,7 @@ class TitleAndSubtitleWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           const SizedBox(
-            height: AppDimens.littleBigMarginDimension,
+            height: AppDimens.bigMarginDimension,
           ),
           Center(
             child: Text(

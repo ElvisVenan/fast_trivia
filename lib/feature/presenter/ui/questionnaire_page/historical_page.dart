@@ -1,4 +1,3 @@
-import 'package:fast_trivia/feature/presenter/ui/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -8,9 +7,9 @@ import '../../../../consts/app_dimens.dart';
 import '../../../../consts/app_routes.dart';
 import '../../../../consts/app_strings.dart';
 
-import '../../../../../feature/presenter/controllers/questions_controller/questions_controller.dart';
+import '../../../../../feature/presenter/controllers/questions_database_controller/questions_database_controller.dart';
 import '../../../../../feature/domain/params/args_params/args_params.dart';
-
+import '../../../../../feature/presenter/ui/home_page/home_page.dart';
 import '../../widgets/buttons_widgets/circular_button_with_icon_widget.dart';
 import '../../widgets/app_bar_widgets/app_bar_of_color_dark_blue_widget.dart';
 import '../../widgets/containers_widgets/container_with_rounded_edges_widget.dart';
@@ -30,8 +29,9 @@ class HistoricalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final questionsController = Modular.get<QuestionsController>();
-    questionsController.getQuestions();
+    final questionsDatabaseController = Modular.get<QuestionsDatabaseController>();
+    questionsDatabaseController.getQuestionsFromDatabase();
+    questionsDatabaseController.getOptionsFromDatabase();
 
     return Scaffold(
       appBar: const AppBarOfColorDarkBlueWidget(
@@ -46,25 +46,22 @@ class HistoricalPage extends StatelessWidget {
             ),
             Observer(builder: (context) {
               return TitleAndSubtitleWidget(
-                title: questionsController
-                    .questions[questionsController.changeQuestionInt].title,
-                subtitle: questionsController
-                    .questions[questionsController.changeQuestionInt].question,
+                title: questionsDatabaseController.questionnaires?[questionsDatabaseController.changeQuestionInt].title ?? "",
+                subtitle: questionsDatabaseController
+                    .questionnaires?[questionsDatabaseController.changeQuestionInt].question ?? "",
               );
             }),
             Observer(builder: (context) {
               return Expanded(
                 child: ListView.builder(
-                    itemCount: questionsController.options.length,
+                    itemCount: 4,
                     itemBuilder: (context, i) {
                       return Observer(builder: (context) {
                         return WhiteCardWithBordersWidget(
                           color: _selectColorsForCorrectAndIncorrectAnswers(
-                              i, questionsController.changeQuestionInt),
-                          text: questionsController
-                              .questions[questionsController.changeQuestionInt]
-                              .options[i]
-                              .title,
+                              i, questionsDatabaseController.changeQuestionInt),
+                          text: questionsDatabaseController.questionnaires?[questionsDatabaseController.changeQuestionInt].options[i].title
+                              ?? "",
                         );
                       });
                     }),
@@ -89,8 +86,7 @@ class HistoricalPage extends StatelessWidget {
                             child: RoundedEdgeButtonWidget(
                               text: AppStrings.answersString,
                               onPressed: () async {
-                                questionsController.changeQuestion();
-                                questionsController.calculateCorrectAnswers();
+                                questionsDatabaseController.changeQuestion();
                               },
                             ));
                       }),

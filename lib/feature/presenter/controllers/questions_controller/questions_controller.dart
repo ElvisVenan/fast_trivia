@@ -1,3 +1,4 @@
+import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/questionnaire_entity.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
@@ -47,6 +48,8 @@ abstract class _QuestionsController with Store {
   @observable
   List<OptionsEntity> options = [];
 
+  @observable
+  QuestionnaireEntity? questionnaire;
 
   @action
   Future getQuestions() async {
@@ -60,6 +63,7 @@ abstract class _QuestionsController with Store {
       title = success.questionnaire.title;
       questions = success.questionnaire.questions;
       options = success.questionnaire.questions[0].options;
+      questionnaire = success.questionnaire;
       return success;
     });
 

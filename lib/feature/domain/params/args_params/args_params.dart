@@ -6,11 +6,13 @@ class ArgsParams extends Equatable {
   final int? correctAnswersCount;
   final List<int>? selectedQuestions;
   final List<QuestionsEntity>? correctQuestions;
+  final int? id;
 
   const ArgsParams({
     this.correctAnswersCount,
     this.selectedQuestions,
     this.correctQuestions,
+    this.id,
   });
 
   @override

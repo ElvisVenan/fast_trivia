@@ -1,3 +1,5 @@
+import 'package:fast_trivia/feature/domain/params/args_params/change_question_entity.dart';
+import 'package:fast_trivia/feature/presenter/controllers/questions_database_controller/questions_database_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -27,6 +29,7 @@ class QuestionnairePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final questionsDatabaseController = Modular.get<QuestionsDatabaseController>();
     final questionsController = Modular.get<QuestionsController>();
     questionsController.getQuestions();
     return Scaffold(
@@ -98,6 +101,8 @@ class QuestionnairePage extends StatelessWidget {
                               questionsController.changeQuestionList,
                               correctQuestions:
                               questionsController.questions));
+                          await questionsDatabaseController.saveSelectedQuestions( ChangeQuestionEntity(selectedQuestions: questionsController.changeQuestionList));
+                          await questionsDatabaseController.saveQuestions(questionsController.questionnaire!);
                         }
                       },
                     ) : const SizedBox(),

@@ -5,6 +5,7 @@ import '../../../../core/database_helper/database_helper.dart';
 
 import '../../../../feature/domain/entities/questionnaires_entities/options_entity.dart';
 import '../../../../feature/domain/entities/questionnaires_entities/questions_enitity.dart';
+import '../../../domain/entities/questionnaires_entities/questionnaire_entity.dart';
 
 part 'questions_database_controller.g.dart';
 
@@ -38,6 +39,33 @@ abstract class _QuestionsDatabaseController with Store {
     } else{
       changeQuestionInt = 0;
     }
+  }
+
+  Future<void> saveQuestions(QuestionnaireEntity questionnaire) async {
+    final databaseHelper = Modular.get<DatabaseHelper>();
+    await databaseHelper.initializeDatabase();
+    await databaseHelper.insertQuestionnaire(questionnaire);
+
+    final savedQuestionnaires = await databaseHelper.getQuestionnaires();
+
+    for (final savedQuestionnaire in savedQuestionnaires) {
+      print('Saved Questionnaire:');
+      print('ID: ${savedQuestionnaire.id}');
+      print('Title: ${savedQuestionnaire.title}');
+      for (final question in savedQuestionnaire.questions) {
+        print('Question:');
+        print('ID: ${question.id}');
+        print('Title: ${question.title}');
+        print('Question: ${question.question}');
+        print('Answer: ${question.answer}');
+        for (final option in question.options) {
+          print('Option:');
+          print('ID: ${option.id}');
+          print('Title: ${option.title}');
+        }
+      }
+    }
+
   }
 
   Future<void> getQuestionsFromDatabase() async {

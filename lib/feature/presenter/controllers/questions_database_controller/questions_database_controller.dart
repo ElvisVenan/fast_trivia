@@ -6,6 +6,7 @@ import '../../../../core/database_helper/database_helper.dart';
 import '../../../../feature/domain/entities/questionnaires_entities/options_entity.dart';
 import '../../../../feature/domain/entities/questionnaires_entities/questions_enitity.dart';
 import '../../../domain/entities/questionnaires_entities/questionnaire_entity.dart';
+import '../../../domain/params/args_params/change_question_entity.dart';
 
 part 'questions_database_controller.g.dart';
 
@@ -30,7 +31,13 @@ abstract class _QuestionsDatabaseController with Store {
   List<QuestionsEntity>? questionnaires;
 
   @observable
+  List<QuestionnaireEntity>? questionnaire;
+
+  @observable
   List<OptionsEntity>? optionsDatabase;
+
+  @observable
+  List<ChangeQuestionEntity>? selectedQuestions;
 
   @action
   changeQuestion () {
@@ -74,11 +81,28 @@ abstract class _QuestionsDatabaseController with Store {
     questionnaires = await databaseHelper.getQuestions(1);
   }
 
+  Future<void> getQuestionnairesFromDatabase() async {
+    final databaseHelper = Modular.get<DatabaseHelper>();
+    await databaseHelper.initializeDatabase();
+    questionnaire = await databaseHelper.getQuestionnaires();
+  }
+
   Future<void> getOptionsFromDatabase() async {
     final  databaseHelper = Modular.get<DatabaseHelper>();
     await databaseHelper.initializeDatabase();
     await  databaseHelper.getOptions(1);
   }
 
+  Future<void> saveSelectedQuestions(ChangeQuestionEntity selectedQuestions) async {
+    final  databaseHelper = Modular.get<DatabaseHelper>();
+    await databaseHelper.initializeDatabase();
+    await  databaseHelper.saveChangeQuestionEntity(selectedQuestions);
+  }
+
+  Future<void> getSelectedQuestions() async {
+    final  databaseHelper = Modular.get<DatabaseHelper>();
+    await databaseHelper.initializeDatabase();
+    selectedQuestions = await databaseHelper.getAllChangeQuestionEntities();
+  }
 
 }

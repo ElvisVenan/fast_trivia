@@ -1,6 +1,7 @@
 # fast_trivia
 
 ## Acesse a branch Master
+## OBSERVAÇAO o último código trabalhado está na dev como ainda tem aguns bugs nao subi para a Master. Mas tem muita coisa feita, vale a pena rodar o projeto na Dev para verifica-lo.
 
 ## Versões Utilizadas
 

@@ -1,8 +1,9 @@
-import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/options_entity.dart';
-import 'package:fast_trivia/feature/domain/entities/questionnaires_entities/questions_enitity.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
 import '../../feature/domain/entities/questionnaires_entities/questionnaire_entity.dart';
+import '../../feature/domain/entities/questionnaires_entities/options_entity.dart';
+import '../../feature/domain/entities/questionnaires_entities/questions_enitity.dart';
 
 class DatabaseHelper {
   late Database _database;
@@ -15,7 +16,6 @@ class DatabaseHelper {
       path,
       version: 1,
       onCreate: (db, version) {
-        // Create tables
         db.execute('''
           CREATE TABLE Questionnaires (
             id INTEGER PRIMARY KEY,
@@ -106,6 +106,13 @@ class DatabaseHelper {
 
   Future<List<OptionsEntity>> getOptions(int questionId) async {
     final options = await _database.query('Options', where: 'questionId = ?', whereArgs: [questionId]);
-    return options.map<OptionsEntity>((opt) => OptionsEntity(id: opt['id'] as int, title: opt['title'] as String)).toList();
+    final optionsList = <OptionsEntity>[];
+    for (final opt in options) {
+      optionsList.add(OptionsEntity(
+        id: opt['id'] as int,
+        title: opt['title'] as String,
+      ));
+    }
+    return optionsList;
   }
 }

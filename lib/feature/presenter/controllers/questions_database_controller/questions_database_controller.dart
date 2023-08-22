@@ -15,6 +15,9 @@ class QuestionsDatabaseController = _QuestionsDatabaseController with _$Question
 abstract class _QuestionsDatabaseController with Store {
 
   @observable
+  bool isLoading = false;
+
+  @observable
   int idx = 0;
 
   @observable

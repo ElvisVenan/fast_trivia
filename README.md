@@ -1,8 +1,7 @@
 # fast_trivia
 
-## Acesse a branch Master
-## OBSERVAÇÃO: o último código trabalhado está na dev como ainda tem aguns bugs nao subi para a Master. Mas tem muita coisa feita, vale a pena rodar o projeto na Dev para verifica-lo.
-
+## Acesse a branch Master para verificar o código
+## Acesse a branch Dev para verificar o último desenvolvimento corrigindo bugs
 ## Versões Utilizadas
 
 - Flutter: 3.14.0-8.0.pre.17

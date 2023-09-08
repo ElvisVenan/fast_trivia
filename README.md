@@ -1,7 +1,6 @@
 # fast_trivia
 
 ## Acesse a branch Master para verificar o código
-## Acesse a branch Dev para verificar o último desenvolvimento corrigindo bugs
 ## Versões Utilizadas
 
 - Flutter: 3.14.0-8.0.pre.17
